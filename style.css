@@ -641,6 +641,121 @@ body {
     font-size: 1.2rem;
 }
 
+/* Inhalation Réseau (déclenchée au clic sur le nez) */
+.core-logo-wrapper {
+    cursor: pointer;
+    border-radius: 50%;
+    outline: none;
+}
+
+.core-logo-wrapper:focus-visible {
+    box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+.network-cables {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 6;
+}
+
+.cable-sheath,
+.cable-core {
+    fill: none;
+    stroke-linecap: round;
+}
+
+.cable-sheath {
+    stroke: rgba(15, 23, 42, 0.9);
+    stroke-width: 4.5;
+}
+
+.cable-core {
+    stroke-width: 1.8;
+    filter: drop-shadow(0 0 4px currentColor);
+}
+
+.cable-plug rect {
+    fill: rgba(18, 24, 38, 0.95);
+    stroke: currentColor;
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 6px currentColor);
+}
+
+.cable-plug .plug-contacts {
+    fill: currentColor;
+    stroke: none;
+    opacity: 0.8;
+}
+
+.packet {
+    filter: drop-shadow(0 0 6px currentColor);
+}
+
+.nostril-glow {
+    mix-blend-mode: screen;
+}
+
+.nostril-hole {
+    filter: blur(0.6px);
+}
+
+.nasal-core-card.is-inhaling .core-logo-wrapper {
+    animation: noseInhale 0.9s ease-in-out infinite;
+}
+
+.nasal-core-card.is-inhaling .ring-inner {
+    animation: ringInhale 1.2s ease-in infinite;
+}
+
+.nasal-core-card.is-inhaling .ring-outer {
+    animation: ringInhaleOuter 1.2s ease-in infinite;
+}
+
+.nasal-core-card.inhale-complete .ring-inner {
+    animation: absorbFlash 0.9s ease-out;
+}
+
+.interactive-tag.is-active {
+    border-color: rgba(236, 72, 153, 0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+}
+
+@keyframes noseInhale {
+    0%, 100% {
+        transform: scale(1.5);
+        filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.6));
+    }
+    50% {
+        transform: scale(1.68, 1.6) translateY(-3px);
+        filter: drop-shadow(0 0 40px rgba(236, 72, 153, 0.85));
+    }
+}
+
+@keyframes ringInhale {
+    from { transform: scale(1.2); opacity: 0.2; }
+    to { transform: scale(0.75); opacity: 1; }
+}
+
+@keyframes ringInhaleOuter {
+    from { transform: rotate(0deg) scale(1.15); opacity: 0.3; }
+    to { transform: rotate(90deg) scale(0.85); opacity: 1; }
+}
+
+@keyframes absorbFlash {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7), inset 0 0 40px rgba(56, 189, 248, 0.6);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 60px rgba(236, 72, 153, 0), inset 0 0 0 rgba(56, 189, 248, 0);
+    }
+}
+
 .tag-text {
     display: flex;
     flex-direction: column;
